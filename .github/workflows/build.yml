@@ -38,7 +38,7 @@ jobs:
         ./"$fileName" --appimage-extract
         pwd; ls -lah
 
-    - name: Install Maestral and update pip
+    - name: Install displaycal and update pip
       run: |
         set -x
         cd squashfs-root/opt/python3*/bin/
@@ -48,9 +48,10 @@ jobs:
 
         # PyQt6 - version above 6.9.1 do not install with GLIBC 2.33
         # https://pypi.org/project/PyQt6/#history
-        ./pip3 install pyqt6==6.9.1
+        #./pip3 install pyqt6==6.9.1
 
-        ./pip3 install --upgrade 'maestral[gui]'
+        #./pip3 install --upgrade 'maestral[gui]'
+        ./pip3 install displaycal
 
     - name: Make AppImage
       run: |
