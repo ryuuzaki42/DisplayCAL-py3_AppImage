@@ -1,0 +1,103 @@
+name: Create new release
+
+on:
+  push:
+    branches:
+      - "**"
+    tags:
+      - "!**"
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-22.04
+    #runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v6
+    - name: Install fuse and libfuse2
+      run: sudo apt install fuse libfuse2
+
+    - name: Get appimagetool
+      run: |
+        set -x
+        #wget -q https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage
+        version_go_appimage=$(wget -q -O - https://api.github.com/repos/probonopd/go-appimage/releases | grep "\"name.*appimagetool-.*-x86_64.AppImage\"" | head -n 1 | cut -d '-' -f2)
+        echo "version_go_appimage: $version_go_appimage"
+        wget -q "https://github.com/probonopd/go-appimage/releases/download/continuous/appimagetool-$version_go_appimage-x86_64.AppImage" -O appimagetool-x86_64.AppImage
+        chmod +x appimagetool-x86_64.AppImage
+        pwd; ls -lah
+
+    - name: Get Python AppImage
+      run: |
+        set -x
+        #wget -q https://github.com/niess/python-appimage/releases/download/python3.12/python3.12.3-cp312-cp312-manylinux_2_28_x86_64.AppImage
+        wget -q https://github.com/ryuuzaki42/Python_to_make_AppImage/releases/download/06/python3.13.3-cp313-cp313-manylinux2014_x86_64.AppImage
+        fileName=$(ls python3*.AppImage)
+        chmod +x "$fileName"
+        ./"$fileName" --appimage-extract
+        pwd; ls -lah
+
+    - name: Install Maestral and update pip
+      run: |
+        set -x
+        cd squashfs-root/opt/python3*/bin/
+        pwd; ls -lah
+
+        ./pip3* install --upgrade pip
+
+        # PyQt6 - version above 6.9.1 do not install with GLIBC 2.33
+        # https://pypi.org/project/PyQt6/#history
+        ./pip3 install pyqt6==6.9.1
+
+        ./pip3 install --upgrade 'maestral[gui]'
+
+    - name: Make AppImage
+      run: |
+        set -x
+        tag=2 #1
+        version=$(grep -o "Maestral:.*" README.md | cut -d ' ' -f2)
+        echo "Maestral version: $version - Tag: $tag"
+
+        cd squashfs-root/
+        pwd; ls -lah
+        rm -v python.png python*.desktop .DirIcon AppRun
+
+        #find . | grep ".png"
+        ln -s opt/python3.*/share/icons/hicolor/512x512/apps/maestral.png maestral.png
+
+        #find . | grep ".desktop"
+        ln -s opt/python3*/share/applications/maestral.desktop Maestral.desktop
+        cat Maestral.desktop
+        pwd; ls -lah
+
+        echo '#!/bin/bash
+        HERE="$(dirname "$(readlink -f "${0}")")"
+        cd "$HERE"/opt/python3*/bin/
+        ./maestral "$@"' > AppRun
+        chmod +x AppRun
+
+        cd ../
+        cp README.md squashfs-root/
+        ls -lah squashfs-root/
+
+        # Wrong permissions on AppDir, please set it to 0755 and try again
+        chmod 0755 squashfs-root/
+
+        ARCH=x86_64 VERSION="${version}-${tag}_JB" ./appimagetool-x86_64.AppImage squashfs-root/
+        pwd; ls -lah
+
+        fileName=$(ls Maestral*.AppImage)
+        echo "fileName: $fileName"
+        md5sum "$fileName" > "${fileName}.md5"
+        pwd; ls -lah
+
+    - uses: xresloader/upload-to-github-release@v1
+      env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+          file: "Maestral*.AppImage; Maestral*.zsync; Maestral*.md5"
+          #overwrite: true
+          verbose: true
+          draft: false
+          default_release_name: "Maestral V in AppImage"
