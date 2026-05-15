@@ -50,7 +50,8 @@ jobs:
         # https://pypi.org/project/PyQt6/#history
         #./pip3 install pyqt6==6.9.1
 
-        #./pip3 install --upgrade 'maestral[gui]'
+        sudo apt install libdbus-1-dev pkg-config
+
         ./pip3 install displaycal
 
     - name: Make AppImage
