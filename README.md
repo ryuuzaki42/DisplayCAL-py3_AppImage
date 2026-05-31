@@ -1,12 +1,12 @@
 
-# Maestral_AppImage
+# displaycal-py3_AppImage
 
-Maestral is a lightweight Dropbox client
+displaycal-py3 ...
 
-https://maestral.app/
+https://github.com/eoyilmaz/displaycal-py3
 
-## Repository: https://github.com/ryuuzaki42/Maestral_AppImage
-    Maestral: 1.9.6
+## Repository: https://github.com/ryuuzaki42/displaycal-py3_AppImage
+    displaycal-py3: 3.9.17
 
 ## Run
 ```
@@ -17,9 +17,7 @@ https://maestral.app/
     ./Maestral-*_JB-x86_64.AppImage gui
 ```
 ---
-https://github.com/samschott/maestral
-
-https://pypi.org/project/maestral/
+https://pypi.org/project/displaycal/
 
 ---
-https://github.com/samschott/maestral/tags
+https://github.com/eoyilmaz/displaycal-py3/releases
