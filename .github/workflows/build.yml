@@ -85,13 +85,15 @@ jobs:
 
         cd squashfs-root/
         pwd; ls -lah
-        rm -v python.png python*.desktop .DirIcon AppRun
+        #rm -v python.png python*.desktop .DirIcon AppRun
+        rm -v .DirIcon AppRun
+        mv python*.desktop displaycal-py3.desktop
 
         #find . | grep ".png"
-        ln -s opt/python3.*/share/icons/hicolor/512x512/apps/maestral.png maestral.png
+        #ln -s opt/python3.*/share/icons/hicolor/512x512/apps/maestral.png maestral.png
 
         #find . | grep ".desktop"
-        ln -s opt/python3*/share/applications/maestral.desktop displaycal-py3.desktop
+        #ln -s opt/python3*/share/applications/maestral.desktop displaycal-py3.desktop
         cat displaycal-py3.desktop
         pwd; ls -lah
 
