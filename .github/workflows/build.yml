@@ -67,8 +67,7 @@ jobs:
 
 
         #- wxPython
-        sudo apt install make gcc g++ python3-dev libgtk-3-dev libwebkit2gtk-4.0-dev libgstreamer-gl1.0-0 freeglut3-dev
-        ./pip3 install --upgrade pip setuptools wheel
+        sudo apt install build-essential libgtk-3-dev libwebkit2gtk-4.0-dev python3-dev
         ./pip3 install wxPython
 
 
