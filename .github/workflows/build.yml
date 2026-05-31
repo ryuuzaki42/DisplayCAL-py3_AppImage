@@ -67,8 +67,11 @@ jobs:
 
 
         #- wxPython
-        sudo apt install build-essential libgtk-3-dev libwebkit2gtk-4.0-dev python3-dev
-        ./pip3 install wxPython
+        #sudo apt install build-essential libgtk-3-dev libwebkit2gtk-4.0-dev python3-dev
+        #./pip3 install wxPython
+
+        wget https://extras.wxpython.org/wxPython4/extras/linux/gtk3/ubuntu-22.04/wxpython-4.2.5-cp313-cp313-linux_x86_64.whl
+        ./pip3 install wxpython-4.2.5-cp313-cp313-linux_x86_64.whl
 
 
         ./pip3 install displaycal
