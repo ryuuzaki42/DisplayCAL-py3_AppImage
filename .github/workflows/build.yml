@@ -65,6 +65,8 @@ jobs:
         sudo apt update
         sudo apt install libdbus-1-dev pkg-config
 
+        ./pip3 install -U -f https://wxpython.org wxPython
+
         ./pip3 install displaycal
 
     - name: Make AppImage
