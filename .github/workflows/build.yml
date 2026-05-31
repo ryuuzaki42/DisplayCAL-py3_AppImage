@@ -79,9 +79,9 @@ jobs:
     - name: Make AppImage
       run: |
         set -x
-        tag=2 #1
-        version=$(grep -o "Maestral:.*" README.md | cut -d ' ' -f2)
-        echo "Maestral version: $version - Tag: $tag"
+        tag=1 #1
+        version=$(grep -o "displaycal-py3:.*" README.md | cut -d ' ' -f2)
+        echo "displaycal-py3 version: $version - Tag: $tag"
 
         cd squashfs-root/
         pwd; ls -lah
@@ -91,8 +91,8 @@ jobs:
         ln -s opt/python3.*/share/icons/hicolor/512x512/apps/maestral.png maestral.png
 
         #find . | grep ".desktop"
-        ln -s opt/python3*/share/applications/maestral.desktop Maestral.desktop
-        cat Maestral.desktop
+        ln -s opt/python3*/share/applications/maestral.desktop displaycal-py3.desktop
+        cat displaycal-py3.desktop
         pwd; ls -lah
 
         echo '#!/bin/bash
@@ -111,7 +111,7 @@ jobs:
         ARCH=x86_64 VERSION="${version}-${tag}_JB" ./appimagetool-x86_64.AppImage squashfs-root/
         pwd; ls -lah
 
-        fileName=$(ls Maestral*.AppImage)
+        fileName=$(ls displaycal-py3*.AppImage)
         echo "fileName: $fileName"
         md5sum "$fileName" > "${fileName}.md5"
         pwd; ls -lah
@@ -120,7 +120,7 @@ jobs:
       env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-          file: "Maestral*.AppImage; Maestral*.zsync; Maestral*.md5"
+          file: "displaycal-py3*.AppImage; displaycal-py3*.zsync; displaycal-py3*.md5"
           #overwrite: true
           verbose: true
           draft: false
