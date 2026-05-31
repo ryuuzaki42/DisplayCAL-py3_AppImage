@@ -1,3 +1,4 @@
+
 name: Create new release
 
 on:
@@ -52,9 +53,9 @@ jobs:
 
 
         #- wxPython
-        wget https://extras.wxpython.org/wxPython4/extras/linux/gtk3/ubuntu-22.04/wxpython-4.2.5-cp313-cp313-linux_x86_64.whl
+        wget -q https://extras.wxpython.org/wxPython4/extras/linux/gtk3/ubuntu-22.04/wxpython-4.2.5-cp313-cp313-linux_x86_64.whl
         ./pip3 install wxpython-4.2.5-cp313-cp313-linux_x86_64.whl
-        rm wxpython-4.2.5-cp313-cp313-linux_x86_64.whl
+        mv wxpython-4.2.5-cp313-cp313-linux_x86_64.whl ../../../../
 
         ./pip3 install displaycal
 
@@ -84,7 +85,7 @@ jobs:
         echo '#!/bin/bash
         HERE="$(dirname "$(readlink -f "${0}")")"
         cd "$HERE"/opt/python3*/bin/
-        ./maestral "$@"' > AppRun
+        ./displaycal "$@"' > AppRun
         chmod +x AppRun
 
         cd ../
@@ -106,7 +107,7 @@ jobs:
       env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-          file: "displaycal-py3*.AppImage; displaycal-py3*.zsync; displaycal-py3*.md5"
+          file: "displaycal-py3*.AppImage; displaycal-py3*.zsync; displaycal-py3*.md5, wxpython-*"
           #overwrite: true
           verbose: true
           draft: false
