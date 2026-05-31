@@ -17,6 +17,10 @@ https://github.com/eoyilmaz/displaycal-py3
     ./Maestral-*_JB-x86_64.AppImage gui
 ```
 ---
+## wxPython
+https://extras.wxpython.org/wxPython4/extras/linux/gtk3/ubuntu-22.04/
+
+---
 https://pypi.org/project/displaycal/
 
 ---
