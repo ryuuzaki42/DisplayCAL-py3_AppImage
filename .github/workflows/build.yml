@@ -39,7 +39,7 @@ jobs:
         ./"$fileName" --appimage-extract
         pwd; ls -lah
 
-    - name: Install displaycal and update pip
+    - name: Install DisplayCAL and update pip
       run: |
         set -x
         cd squashfs-root/opt/python3*/bin/
@@ -50,7 +50,6 @@ jobs:
         #- dbus
         sudo apt update
         sudo apt install libdbus-1-dev pkg-config
-
 
         #- wxPython
         wget -q https://extras.wxpython.org/wxPython4/extras/linux/gtk3/ubuntu-22.04/wxpython-4.2.5-cp313-cp313-linux_x86_64.whl
@@ -63,24 +62,24 @@ jobs:
       run: |
         set -x
         tag=1 #1
-        version=$(grep -o "displaycal-py3:.*" README.md | cut -d ' ' -f2)
-        echo "displaycal-py3 version: $version - Tag: $tag"
+        version=$(grep -o "DisplayCAL-py3:.*" README.md | cut -d ' ' -f2)
+        echo "DisplayCAL-py3 version: $version - Tag: $tag"
 
         cd squashfs-root/
         pwd; ls -lah
         #rm -v python.png python*.desktop .DirIcon AppRun
         rm -v .DirIcon AppRun
-        mv python*.desktop displaycal-py3.desktop
+        mv python*.desktop DisplayCAL-py3.desktop
 
         #find . | grep ".png"
         #ln -s opt/python3.*/share/icons/hicolor/512x512/apps/maestral.png maestral.png
 
         #find . | grep ".desktop"
-        #ln -s opt/python3*/share/applications/maestral.desktop displaycal-py3.desktop
-        cat displaycal-py3.desktop
+        #ln -s opt/python3*/share/applications/maestral.desktop DisplayCAL-py3.desktop
+        cat DisplayCAL-py3.desktop
         pwd; ls -lah
 
-        sed -i 's/=python3.13.3/=displaycal-py3/g' displaycal-py3.desktop
+        sed -i 's/=python3.13.3/=DisplayCAL-py3/g' DisplayCAL-py3.desktop
 
         echo '#!/bin/bash
         HERE="$(dirname "$(readlink -f "${0}")")"
@@ -98,7 +97,7 @@ jobs:
         ARCH=x86_64 VERSION="${version}-${tag}_JB" ./appimagetool-x86_64.AppImage squashfs-root/
         pwd; ls -lah
 
-        fileName=$(ls displaycal-py3*.AppImage)
+        fileName=$(ls DisplayCAL-py3*.AppImage)
         echo "fileName: $fileName"
         md5sum "$fileName" > "${fileName}.md5"
         pwd; ls -lah
@@ -107,8 +106,8 @@ jobs:
       env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-          file: "displaycal-py3*.AppImage; displaycal-py3*.zsync; displaycal-py3*.md5, wxpython-*"
+          file: "DisplayCAL-py3*.AppImage; DisplayCAL-py3*.zsync; DisplayCAL-py3*.md5; wxpython-*.whl"
           #overwrite: true
           verbose: true
           draft: false
-          default_release_name: "displaycal-py3 V in AppImage"
+          default_release_name: "DisplayCAL-py3 V in AppImage"
