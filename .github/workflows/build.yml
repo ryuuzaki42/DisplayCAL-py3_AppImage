@@ -87,9 +87,8 @@ jobs:
         ./displaycal "$@"' > AppRun
         chmod +x AppRun
 
-        find /usr/ | grep "libjpeg"
-        #ls /usr/lib/libjpeg*
-        #ls /usr/lib64/libjpeg*
+        find /usr/ | grep "libjpeg."
+        cp /usr/lib/x86_64-linux-gnu/libjpeg.so* usr/lib/
 
         cd ../
         cp README.md squashfs-root/
