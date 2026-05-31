@@ -61,6 +61,10 @@ jobs:
 
         #sudo apt install python3-dev
 
+        #-
+        sudo apt update
+        sudo apt install libdbus-1-dev pkg-config
+
         ./pip3 install displaycal
 
     - name: Make AppImage
