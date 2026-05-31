@@ -1,12 +1,12 @@
 
-# displaycal-py3_AppImage
+# DisplayCAL-py3_AppImage
 
-displaycal-py3 ...
+DisplayCAL-py3 ...
 
 https://github.com/eoyilmaz/displaycal-py3
 
-## Repository: https://github.com/ryuuzaki42/displaycal-py3_AppImage
-    displaycal-py3: 3.9.17
+## Repository: https://github.com/ryuuzaki42/DisplayCAL-py3_AppImage
+    DisplayCAL-py3: 3.9.17
 
 ## Run
 ```
