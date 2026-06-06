@@ -53,8 +53,8 @@ jobs:
 
         #- wxPython
         wget -q https://extras.wxpython.org/wxPython4/extras/linux/gtk3/ubuntu-20.04/wxPython-4.2.2-cp313-cp313-linux_x86_64.whl
-        ./pip3 install wxpython-*.whl
-        mv wxpython-*.whl ../../../../
+        ./pip3 install wxPython-*.whl
+        mv wxPython-*.whl ../../../../
 
         ./pip3 install displaycal
 
@@ -110,7 +110,7 @@ jobs:
       env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-          file: "DisplayCAL-py3*.AppImage; DisplayCAL-py3*.zsync; DisplayCAL-py3*.md5; wxpython-*.whl"
+          file: "DisplayCAL-py3*.AppImage; DisplayCAL-py3*.zsync; DisplayCAL-py3*.md5; wxPython-*.whl"
           #overwrite: true
           verbose: true
           draft: false
