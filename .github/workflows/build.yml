@@ -89,7 +89,8 @@ jobs:
         chmod +x AppRun
 
         find /usr/ | grep "libjpeg."
-        cp /usr/lib/x86_64-linux-gnu/libjpeg.so* usr/lib/libjpeg/
+        mkdir usr/libjpeg/
+        cp /usr/lib/x86_64-linux-gnu/libjpeg.so* usr/libjpeg/
 
         cd ../
         cp README.md squashfs-root/
