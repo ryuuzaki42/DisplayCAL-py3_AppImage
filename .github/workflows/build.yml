@@ -47,11 +47,11 @@ jobs:
 
         ./pip3* install --upgrade pip
 
-        #- dbus
+        # Added dbus
         sudo apt update
         sudo apt install libdbus-1-dev pkg-config
 
-        #- wxPython
+        # Added wxPython
         wget -q https://extras.wxpython.org/wxPython4/extras/linux/gtk3/ubuntu-20.04/wxPython-4.2.2-cp313-cp313-linux_x86_64.whl
         ./pip3 install wxPython-*.whl
         mv wxPython-*.whl ../../../../
@@ -81,16 +81,6 @@ jobs:
 
         sed -i 's/=python3.13.3/=DisplayCAL-py3/g' DisplayCAL-py3.desktop
 
-        echo '#!/bin/bash
-        HERE="$(dirname "$(readlink -f "${0}")")"
-
-        export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HERE/usr/libjpeg/
-        export PATH=$PATH:$HERE/ArgyllCMS/bin/
-
-        cd "$HERE"/opt/python3*/bin/
-        ./displaycal "$@"' > AppRun
-        chmod +x AppRun
-
         ## Added libjpeg.so.8
         #find /usr/ | grep "libjpeg."
         mkdir usr/libjpeg/
@@ -102,6 +92,16 @@ jobs:
         mv Argyll_*.0/ ArgyllCMS/
         mv Argyll_*_bin.tgz ../
 
+        echo '#!/bin/bash
+        HERE="$(dirname "$(readlink -f "${0}")")"
+
+        export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HERE/usr/libjpeg/
+        export PATH=$PATH:$HERE/ArgyllCMS/bin/
+
+        cd "$HERE"/opt/python3*/bin/
+        ./displaycal "$@"' > AppRun
+        chmod +x AppRun
+        
         cd ../
         cp README.md squashfs-root/
         ls -lah squashfs-root/
