@@ -94,12 +94,12 @@ jobs:
         cp /usr/lib/x86_64-linux-gnu/libjpeg.so* usr/libjpeg/
 
         # Added ArgyllCMS
-        mkdir ArgyllCMS/; cd ArgyllCMS/
         wget -q https://www.argyllcms.com/Argyll_V3.5.0_linux_x86_64_bin.tgz
         tar -xvf Argyll_*_bin.tgz
-        mv Argyll_*_bin.tgz ../../
+        mv Argyll_*.0/ ArgyllCMS/
+        mv Argyll_*_bin.tgz ../
 
-        cd ../../
+        cd ../
         cp README.md squashfs-root/
         ls -lah squashfs-root/
 
