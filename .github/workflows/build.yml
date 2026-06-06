@@ -67,19 +67,15 @@ jobs:
 
         cd squashfs-root/
         pwd; ls -lah
-
         #rm -v python.png python*.desktop .DirIcon AppRun
         rm -v .DirIcon AppRun
-        #mv python*.desktop DisplayCAL-py3.desktop
-
         rm -v python.png
         ln -s opt/python3.13/share/icons/hicolor/128x128/apps/displaycal.png displaycal.png
 
-        find . | grep ".desktop"
+        #find . | grep ".desktop"
         rm -v python*.desktop
         cp opt/python3.13/share/applications/displaycal.desktop DisplayCAL-py3.desktop
         cat DisplayCAL-py3.desktop
-
         sed -i 's/=DisplayCAL/=DisplayCAL-py3/g' DisplayCAL-py3.desktop
         cat DisplayCAL-py3.desktop
         pwd; ls -lah
