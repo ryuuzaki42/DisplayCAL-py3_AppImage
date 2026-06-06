@@ -75,15 +75,14 @@ jobs:
         rm -v python.png
         ln -s opt/python3.13/share/icons/hicolor/128x128/apps/displaycal.png displaycal.png
 
-        #find . | grep ".desktop"
-        #ln -s opt/python3*/share/applications/maestral.desktop DisplayCAL-py3.desktop
+        find . | grep ".desktop"
         rm -v python*.desktop
         cp opt/python3.13/share/applications/displaycal.desktop DisplayCAL-py3.desktop
         cat DisplayCAL-py3.desktop
-        pwd; ls -lah
 
-        sed -i 's/=python3.13.3/=DisplayCAL-py3/g' DisplayCAL-py3.desktop
         sed -i 's/=DisplayCAL/=DisplayCAL-py3/g' DisplayCAL-py3.desktop
+        cat DisplayCAL-py3.desktop
+        pwd; ls -lah
 
         ## Added libjpeg.so.8
         #find /usr/ | grep "libjpeg."
@@ -105,7 +104,7 @@ jobs:
         cd "$HERE"/opt/python3*/bin/
         ./displaycal "$@"' > AppRun
         chmod +x AppRun
-        
+
         cd ../
         cp README.md squashfs-root/
         ls -lah squashfs-root/
