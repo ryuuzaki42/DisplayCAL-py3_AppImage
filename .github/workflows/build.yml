@@ -88,9 +88,16 @@ jobs:
         ./displaycal "$@"' > AppRun
         chmod +x AppRun
 
-        find /usr/ | grep "libjpeg."
+        ## Added libjpeg.so.8
+        #find /usr/ | grep "libjpeg."
         mkdir usr/libjpeg/
         cp /usr/lib/x86_64-linux-gnu/libjpeg.so* usr/libjpeg/
+
+        mkdir ArgyllCMS/
+        cd ArgyllCMS/
+        wget -c https://www.argyllcms.com/Argyll_V3.5.0_linux_x86_64_bin.tgz
+        tar -xvf Argyll_*_bin.tgz
+        mv Argyll_*_bin.tgz ../
 
         cd ../
         cp README.md squashfs-root/
@@ -111,7 +118,7 @@ jobs:
       env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-          file: "DisplayCAL-py3*.AppImage; DisplayCAL-py3*.zsync; DisplayCAL-py3*.md5; wxPython-*.whl"
+          file: "DisplayCAL-py3*.AppImage; DisplayCAL-py3*.zsync; DisplayCAL-py3*.md5; wxPython-*.whl; Argyll_*_bin.tgz"
           #overwrite: true
           verbose: true
           draft: false
