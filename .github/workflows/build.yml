@@ -90,6 +90,12 @@ jobs:
         mkdir usr/libtiff/
         cp /usr/lib/x86_64-linux-gnu/libtiff.so* usr/libtiff/
 
+
+        # Added libjbig.so
+        find /usr/ | grep "libjbig.so"
+        mkdir usr/libjbig/
+        cp /usr/lib/x86_64-linux-gnu/libjbig.so* usr/libjbig/
+
         # Added ArgyllCMS
         wget -q https://www.argyllcms.com/Argyll_V3.5.0_linux_x86_64_bin.tgz
         tar -xvf Argyll_*_bin.tgz
@@ -101,6 +107,7 @@ jobs:
 
         export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HERE/usr/libjpeg/
         export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HERE/usr/libtiff/
+        export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HERE/usr/libjbig/       
         export PATH=$PATH:$HERE/ArgyllCMS/bin/
 
         cd "$HERE"/opt/python3*/bin/
