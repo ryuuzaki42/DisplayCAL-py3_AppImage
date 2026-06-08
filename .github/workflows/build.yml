@@ -80,10 +80,15 @@ jobs:
         cat DisplayCAL-py3.desktop
         pwd; ls -lah
 
-        ## Added libjpeg.so.8
-        #find /usr/ | grep "libjpeg."
+        # Added libjpeg.so.8
+        find /usr/ | grep "libjpeg.so"
         mkdir usr/libjpeg/
         cp /usr/lib/x86_64-linux-gnu/libjpeg.so* usr/libjpeg/
+
+        # Added libtiff.so.5
+        find /usr/ | grep "libtiff.so"
+        mkdir usr/libtiff/
+        cp /usr/lib/x86_64-linux-gnu/libtiff.so* usr/libtiff/
 
         # Added ArgyllCMS
         wget -q https://www.argyllcms.com/Argyll_V3.5.0_linux_x86_64_bin.tgz
@@ -95,6 +100,7 @@ jobs:
         HERE="$(dirname "$(readlink -f "${0}")")"
 
         export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HERE/usr/libjpeg/
+        export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HERE/usr/libtiff/
         export PATH=$PATH:$HERE/ArgyllCMS/bin/
 
         cd "$HERE"/opt/python3*/bin/
