@@ -82,18 +82,20 @@ jobs:
 
         # Added libjpeg.so.8
         find /usr/ | grep "libjpeg.so"
-        mkdir usr/libjpeg/
-        cp /usr/lib/x86_64-linux-gnu/libjpeg.so* usr/libjpeg/
+        mkdir usr/lib_others/
+        cp /usr/lib/x86_64-linux-gnu/libjpeg.so* usr/lib_others/
 
         # Added libtiff.so.5
         find /usr/ | grep "libtiff.so"
-        mkdir usr/libtiff/
-        cp /usr/lib/x86_64-linux-gnu/libtiff.so* usr/libtiff/
+        cp /usr/lib/x86_64-linux-gnu/libtiff.so* usr/lib_others/
 
         # Added libjbig.so
         find /usr/ | grep "libjbig.so"
-        mkdir usr/libjbig/
-        cp /usr/lib/x86_64-linux-gnu/libjbig.so* usr/libjbig/
+        cp /usr/lib/x86_64-linux-gnu/libjbig.so* usr/lib_others/
+
+        # Added libssl.so
+        find /usr/ | grep "libssl.so"
+        cp /usr/lib/x86_64-linux-gnu/libssl.so* usr/lib_others/
 
         # Added ArgyllCMS
         wget -q https://www.argyllcms.com/Argyll_V3.5.0_linux_x86_64_bin.tgz
@@ -104,9 +106,7 @@ jobs:
         echo '#!/bin/bash
         HERE="$(dirname "$(readlink -f "${0}")")"
 
-        export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HERE/usr/libjpeg/
-        export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HERE/usr/libtiff/
-        export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HERE/usr/libjbig/       
+        export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HERE/usr/lib_others/   
         export PATH=$PATH:$HERE/ArgyllCMS/bin/
 
         cd "$HERE"/opt/python3*/bin/
