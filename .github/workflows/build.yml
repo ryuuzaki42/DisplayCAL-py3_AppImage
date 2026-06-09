@@ -52,7 +52,11 @@ jobs:
         sudo apt install libdbus-1-dev pkg-config
 
         # Added wxPython
-        wget -q https://extras.wxpython.org/wxPython4/extras/linux/gtk3/ubuntu-20.04/wxPython-4.2.2-cp313-cp313-linux_x86_64.whl
+        # Default
+        #wget -q https://extras.wxpython.org/wxPython4/extras/linux/gtk3/ubuntu-20.04/wxPython-4.2.2-cp313-cp313-linux_x86_64.whl
+        # Fedora
+        wget -q https://extras.wxpython.org/wxPython4/extras/linux/gtk3/ubuntu-24.04/wxpython-4.2.4-cp313-cp313-linux_x86_64.whl
+
         ./pip3 install wxPython-*.whl
         mv wxPython-*.whl ../../../../
 
@@ -86,20 +90,20 @@ jobs:
         cp /usr/lib/x86_64-linux-gnu/libjpeg.so* usr/lib_others/
 
         # Added libtiff.so.5
-        find /usr/ | grep "libtiff.so"
-        cp /usr/lib/x86_64-linux-gnu/libtiff.so* usr/lib_others/
+        #find /usr/ | grep "libtiff.so"
+        #cp /usr/lib/x86_64-linux-gnu/libtiff.so* usr/lib_others/
 
         # Added libjbig.so
-        find /usr/ | grep "libjbig.so"
-        cp /usr/lib/x86_64-linux-gnu/libjbig.so* usr/lib_others/
+        #find /usr/ | grep "libjbig.so"
+        #cp /usr/lib/x86_64-linux-gnu/libjbig.so* usr/lib_others/
 
         # Added libssl.so
-        find /usr/ | grep "libssl.so"
-        cp /usr/lib/x86_64-linux-gnu/libssl.so* usr/lib_others/
+        #find /usr/ | grep "libssl.so"
+        #cp /usr/lib/x86_64-linux-gnu/libssl.so* usr/lib_others/
 
         # Added libcurl.so
-        find /usr/ | grep "libcurl.so"
-        cp /usr/lib/x86_64-linux-gnu/libcurl.so* usr/lib_others/
+        #find /usr/ | grep "libcurl.so"
+        #cp /usr/lib/x86_64-linux-gnu/libcurl.so* usr/lib_others/
 
         # Added ArgyllCMS
         wget -q https://www.argyllcms.com/Argyll_V3.5.0_linux_x86_64_bin.tgz
