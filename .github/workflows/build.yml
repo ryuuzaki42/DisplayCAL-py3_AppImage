@@ -97,6 +97,10 @@ jobs:
         find /usr/ | grep "libssl.so"
         cp /usr/lib/x86_64-linux-gnu/libssl.so* usr/lib_others/
 
+        # Added libcurl.so
+        find /usr/ | grep "libcurl.so"
+        cp /usr/lib/x86_64-linux-gnu/libcurl.so* usr/lib_others/
+
         # Added ArgyllCMS
         wget -q https://www.argyllcms.com/Argyll_V3.5.0_linux_x86_64_bin.tgz
         tar -xvf Argyll_*_bin.tgz
