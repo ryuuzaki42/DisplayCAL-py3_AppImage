@@ -55,7 +55,7 @@ jobs:
         # Default
         #wget -q https://extras.wxpython.org/wxPython4/extras/linux/gtk3/ubuntu-20.04/wxPython-4.2.2-cp313-cp313-linux_x86_64.whl
         # Fedora
-        wget -q https://extras.wxpython.org/wxPython4/extras/linux/gtk3/ubuntu-24.04/wxpython-4.2.3-cp313-cp313-linux_x86_64.whl
+        wget -q https://extras.wxpython.org/wxPython4/extras/linux/gtk3/ubuntu-24.04/wxPython-4.2.2-cp313-cp313-linux_x86_64.whl
 
         ./pip3 install wx*ython-*.whl
         mv wx*ython-*.whl ../../../../
