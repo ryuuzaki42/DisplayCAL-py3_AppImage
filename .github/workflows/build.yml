@@ -53,9 +53,9 @@ jobs:
 
         # Added wxPython
         # Default
-        #wget -q https://extras.wxpython.org/wxPython4/extras/linux/gtk3/ubuntu-20.04/wxPython-4.2.2-cp313-cp313-linux_x86_64.whl
+        wget -q https://extras.wxpython.org/wxPython4/extras/linux/gtk3/ubuntu-20.04/wxPython-4.2.2-cp313-cp313-linux_x86_64.whl
         # Fedora
-        wget -q https://extras.wxpython.org/wxPython4/extras/linux/gtk3/ubuntu-22.04/wxPython-4.2.2-cp313-cp313-linux_x86_64.whl
+        #wget -q https://extras.wxpython.org/wxPython4/extras/linux/gtk3/ubuntu-22.04/wxPython-4.2.2-cp313-cp313-linux_x86_64.whl
 
         ./pip3 install wx*ython-*.whl
         mv wx*ython-*.whl ../../../../
@@ -89,22 +89,6 @@ jobs:
         mkdir usr/lib_others/
         cp /usr/lib/x86_64-linux-gnu/libjpeg.so* usr/lib_others/
 
-        # Added libtiff.so.5
-        #find /usr/ | grep "libtiff.so"
-        #cp /usr/lib/x86_64-linux-gnu/libtiff.so* usr/lib_others/
-
-        # Added libjbig.so
-        #find /usr/ | grep "libjbig.so"
-        #cp /usr/lib/x86_64-linux-gnu/libjbig.so* usr/lib_others/
-
-        # Added libssl.so
-        #find /usr/ | grep "libssl.so"
-        #cp /usr/lib/x86_64-linux-gnu/libssl.so* usr/lib_others/
-
-        # Added libcurl.so
-        #find /usr/ | grep "libcurl.so"
-        #cp /usr/lib/x86_64-linux-gnu/libcurl.so* usr/lib_others/
-
         # Added ArgyllCMS
         wget -q https://www.argyllcms.com/Argyll_V3.5.0_linux_x86_64_bin.tgz
         tar -xvf Argyll_*_bin.tgz
@@ -114,7 +98,7 @@ jobs:
         echo '#!/bin/bash
         HERE="$(dirname "$(readlink -f "${0}")")"
 
-        export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HERE/usr/lib_others/   
+        export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HERE/usr/lib_others/
         export PATH=$PATH:$HERE/ArgyllCMS/bin/
 
         cd "$HERE"/opt/python3*/bin/
