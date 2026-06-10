@@ -77,11 +77,11 @@ jobs:
         #rm -v python.png python*.desktop .DirIcon AppRun
         rm -v .DirIcon AppRun
         rm -v python.png
-        ln -s opt/python3.13/share/icons/hicolor/128x128/apps/displaycal.png displaycal.png
+        ln -s opt/python3.*/share/icons/hicolor/128x128/apps/displaycal.png displaycal.png
 
         #find . | grep ".desktop"
         rm -v python*.desktop
-        cp opt/python3.13/share/applications/displaycal.desktop DisplayCAL-py3.desktop
+        cp opt/python3.*/share/applications/displaycal.desktop DisplayCAL-py3.desktop
         cat DisplayCAL-py3.desktop
         sed -i 's/=DisplayCAL/=DisplayCAL-py3/g' DisplayCAL-py3.desktop
         cat DisplayCAL-py3.desktop
