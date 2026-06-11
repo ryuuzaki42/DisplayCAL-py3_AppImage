@@ -206,11 +206,13 @@ jobs:
         md5sum "$fileName" > "${fileName}.md5"
         pwd; ls -lah
 
+        md5sum DisplayCAL-py3*.AppImage DisplayCAL-py3*.zsync wx*ython-*.whl Argyll_*_bin.tgz > MD5SUM
+
     - uses: xresloader/upload-to-github-release@v1
       env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-          file: "DisplayCAL-py3*.AppImage; DisplayCAL-py3*.zsync; DisplayCAL-py3*.md5; wx*ython-*.whl; Argyll_*_bin.tgz"
+          file: "DisplayCAL-py3*.AppImage; DisplayCAL-py3*.zsync; DisplayCAL-py3*.md5; wx*ython-*.whl; Argyll_*_bin.tgz; MD5SUM"
           #overwrite: true
           verbose: true
           draft: false
