@@ -148,6 +148,64 @@ jobs:
         md5sum "$fileName" > "${fileName}.md5"
         pwd; ls -lah
 
+    - name: Fedora - Make AppImage
+      run: |
+        set -x
+        tag=1 #1
+        version=$(grep -o "DisplayCAL-py3:.*" README.md | cut -d ' ' -f2)
+        echo "DisplayCAL-py3 version: $version - Tag: $tag"
+
+        cd squashfs-root-Fedora/
+        pwd; ls -lah
+        #rm -v python.png python*.desktop .DirIcon AppRun
+        rm -v .DirIcon AppRun
+        rm -v python.png
+        ln -s opt/python3.*/share/icons/hicolor/128x128/apps/displaycal.png displaycal.png
+
+        #find . | grep ".desktop"
+        rm -v python*.desktop
+        cp opt/python3.*/share/applications/displaycal.desktop DisplayCAL-py3.desktop
+        cat DisplayCAL-py3.desktop
+        sed -i 's/=DisplayCAL/=DisplayCAL-py3/g' DisplayCAL-py3.desktop
+        cat DisplayCAL-py3.desktop
+        pwd; ls -lah
+
+        # Added libjpeg.so.8
+        find /usr/ | grep "libjpeg.so"
+        mkdir usr/lib_others/
+        cp /usr/lib/x86_64-linux-gnu/libjpeg.so* usr/lib_others/
+
+        # Added ArgyllCMS
+        wget -q https://www.argyllcms.com/Argyll_V3.5.0_linux_x86_64_bin.tgz
+        tar -xvf Argyll_*_bin.tgz
+        mv Argyll_*.0/ ArgyllCMS/
+        mv Argyll_*_bin.tgz ../
+
+        echo '#!/bin/bash
+        HERE="$(dirname "$(readlink -f "${0}")")"
+
+        export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HERE/usr/lib_others/
+        export PATH=$PATH:$HERE/ArgyllCMS/bin/
+
+        cd "$HERE"/opt/python3*/bin/
+        ./displaycal "$@"' > AppRun
+        chmod +x AppRun
+
+        cd ../
+        cp README.md squashfs-root-Fedora/
+        ls -lah squashfs-root-Fedora/
+
+        # Wrong permissions on AppDir, please set it to 0755 and try again
+        chmod 0755 squashfs-root-Fedora/
+
+        ARCH=x86_64 VERSION="${version}-Fedora-${tag}_JB" ./appimagetool-x86_64.AppImage squashfs-root-Fedora/
+        pwd; ls -lah
+
+        fileName=$(ls DisplayCAL-py3*.AppImage)
+        echo "fileName: $fileName"
+        md5sum "$fileName" > "${fileName}.md5"
+        pwd; ls -lah
+
     - uses: xresloader/upload-to-github-release@v1
       env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
