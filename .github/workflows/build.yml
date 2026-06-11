@@ -113,9 +113,9 @@ jobs:
         pwd; ls -lah
 
         # Added libjpeg.so.8
-        find /usr/ | grep "libjpeg.so"
-        mkdir usr/lib_others/
-        cp /usr/lib/x86_64-linux-gnu/libjpeg.so* usr/lib_others/
+        #find /usr/ | grep "libjpeg.so"
+        mkdir usr/libjpeg/
+        cp /usr/lib/x86_64-linux-gnu/libjpeg.so* usr/libjpeg/
 
         # Added ArgyllCMS
         wget -q https://www.argyllcms.com/Argyll_V3.5.0_linux_x86_64_bin.tgz
@@ -126,7 +126,7 @@ jobs:
         echo '#!/bin/bash
         HERE="$(dirname "$(readlink -f "${0}")")"
 
-        export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HERE/usr/lib_others/
+        export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HERE/usr/libjpeg/
         export PATH=$PATH:$HERE/ArgyllCMS/bin/
 
         cd "$HERE"/opt/python3*/bin/
@@ -171,9 +171,9 @@ jobs:
         pwd; ls -lah
 
         # Added libjpeg.so.8
-        find /usr/ | grep "libjpeg.so"
-        mkdir usr/lib_others/
-        cp /usr/lib/x86_64-linux-gnu/libjpeg.so* usr/lib_others/
+        #find /usr/ | grep "libjpeg.so"
+        mkdir usr/libjpeg/
+        cp /usr/lib/x86_64-linux-gnu/libjpeg.so* usr/libjpeg/
 
         # Added ArgyllCMS
         wget -q https://www.argyllcms.com/Argyll_V3.5.0_linux_x86_64_bin.tgz
@@ -184,7 +184,7 @@ jobs:
         echo '#!/bin/bash
         HERE="$(dirname "$(readlink -f "${0}")")"
 
-        export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HERE/usr/lib_others/
+        export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HERE/usr/libjpeg/
         export PATH=$PATH:$HERE/ArgyllCMS/bin/
 
         cd "$HERE"/opt/python3*/bin/
@@ -201,7 +201,7 @@ jobs:
         ARCH=x86_64 VERSION="${version}-Fedora-${tag}_JB" ./appimagetool-x86_64.AppImage squashfs-root-Fedora/
         pwd; ls -lah
 
-        fileName=$(ls DisplayCAL-py3*.AppImage)
+        fileName=$(ls DisplayCAL-py3*-Fedora-*.AppImage)
         echo "fileName: $fileName"
         md5sum "$fileName" > "${fileName}.md5"
         pwd; ls -lah
