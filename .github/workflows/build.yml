@@ -22,7 +22,6 @@ jobs:
     - name: Get appimagetool
       run: |
         set -x
-        #wget -q https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage
         version_go_appimage=$(wget -q -O - https://api.github.com/repos/probonopd/go-appimage/releases | grep "\"name.*appimagetool-.*-x86_64.AppImage\"" | head -n 1 | cut -d '-' -f2)
         echo "version_go_appimage: $version_go_appimage"
         wget -q "https://github.com/probonopd/go-appimage/releases/download/continuous/appimagetool-$version_go_appimage-x86_64.AppImage" -O appimagetool-x86_64.AppImage
@@ -33,13 +32,16 @@ jobs:
       run: |
         set -x
         #wget -q https://github.com/niess/python-appimage/releases/download/python3.12/python3.12.3-cp312-cp312-manylinux_2_28_x86_64.AppImage
-        # Test Default
         wget -q https://github.com/ryuuzaki42/Python_to_make_AppImage/releases/download/06/python3.13.3-cp313-cp313-manylinux2014_x86_64.AppImage
-        # Teste Fedora
-        #wget -q https://github.com/ryuuzaki42/Python_to_make_AppImage/releases/download/05/python3.12.10-cp312-cp312-manylinux_2_28_x86_64.AppImage
         fileName=$(ls python3*.AppImage)
         chmod +x "$fileName"
         ./"$fileName" --appimage-extract
+        pwd; ls -lah
+
+    - name: Copy to make Fedora AppImage version
+      run: |
+        set -x
+        cp -r squashfs-root/ squashfs-root-fedora/
         pwd; ls -lah
 
     - name: Install DisplayCAL and update pip
@@ -57,9 +59,8 @@ jobs:
         # Added wxPython
         # Default
         #wget -q https://extras.wxpython.org/wxPython4/extras/linux/gtk3/ubuntu-20.04/wxPython-4.2.2-cp313-cp313-linux_x86_64.whl
-        wget -q https://wheels.eeems.codes/wxpython/wxpython-4.2.5-cp313-cp313-linux_x86_64.whl
         # Fedora
-        #wget -q https://wheels.eeems.codes/wxpython/wxpython-4.2.5-cp312-cp312-linux_x86_64.whl
+        wget -q https://wheels.eeems.codes/wxpython/wxpython-4.2.5-cp313-cp313-linux_x86_64.whl
 
         ./pip3 install wx*ython-*.whl
         mv wx*ython-*.whl ../../../../
