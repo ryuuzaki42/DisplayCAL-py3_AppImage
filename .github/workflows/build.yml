@@ -47,6 +47,11 @@ jobs:
     - name: Install DisplayCAL and update pip
       run: |
         set -x
+
+        # Added libXss.so.1
+        find /usr/ | grep "libXss.so"
+        exit
+        
         cd squashfs-root/opt/python3*/bin/
         pwd; ls -lah
 
