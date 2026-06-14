@@ -1,5 +1,6 @@
 
 # DisplayCAL-py3_AppImage
+- DisplayCAL-py3 => Python + DisplayCAL + ArgyllCMS
 
 DisplayCAL is a display calibration and profiling solution with a focus on accuracy and versatility, at its core it relies on ArgyllCMS
 - https://displaycal.net/
@@ -34,7 +35,7 @@ https://www.argyllcms.com/Argyll_V3.5.0_linux_x86_64_bin.tgz
 - Default: Test in Slackware 15.0 64 bits with KDE, using wxPython-4.2.2-cp313-cp313-linux_x86_64.whl
 - Fedora: Test in Fedora 43 64 bits with Gnome, using wxpython-4.2.5-cp313-cp313-linux_x86_64.whl
 - Bolth with libjpeg.so.8 from Ubuntu 22.04 and Argyll_V3.5.0_linux_x86_64_bin.tgz
-- Fedora also with libXss.so.1 from Ubuntu 22.04
+- Fedora also with libXss.so.1 (libXScrnSaver) from Ubuntu 22.04
 
 ---
 https://pypi.org/project/displaycal/
