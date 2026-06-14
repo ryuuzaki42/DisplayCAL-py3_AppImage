@@ -38,6 +38,12 @@ jobs:
         ./"$fileName" --appimage-extract
         pwd; ls -lah
 
+    - name: Get ArgyllCMS
+      run: |
+        set -x
+        wget -q https://www.argyllcms.com/Argyll_V3.5.0_linux_x86_64_bin.tgz
+        pwd; ls -lah
+
     - name: Copy to make Fedora AppImage version
       run: |
         set -x
@@ -118,10 +124,8 @@ jobs:
         cp /usr/lib/x86_64-linux-gnu/libjpeg.so* usr/libjpeg/
 
         # Added ArgyllCMS
-        wget -q https://www.argyllcms.com/Argyll_V3.5.0_linux_x86_64_bin.tgz
-        tar -xvf Argyll_*_bin.tgz
+        tar -xvf ../Argyll_*_bin.tgz
         mv Argyll_*.0/ ArgyllCMS/
-        mv Argyll_*_bin.tgz ../
 
         echo '#!/bin/bash
         HERE="$(dirname "$(readlink -f "${0}")")"
@@ -176,15 +180,13 @@ jobs:
         cp /usr/lib/x86_64-linux-gnu/libjpeg.so* usr/libjpeg/
 
         # Added libXss.so.1
-        find /usr/ | grep "libXss.so"
+        #find /usr/ | grep "libXss.so"
         mkdir usr/libXss/
         cp /usr/lib/x86_64-linux-gnu/libXss.so* usr/libXss/
 
         # Added ArgyllCMS
-        wget -q https://www.argyllcms.com/Argyll_V3.5.0_linux_x86_64_bin.tgz
-        tar -xvf Argyll_*_bin.tgz
+        tar -xvf ../Argyll_*_bin.tgz
         mv Argyll_*.0/ ArgyllCMS/
-        mv Argyll_*_bin.tgz ../
 
         echo '#!/bin/bash
         HERE="$(dirname "$(readlink -f "${0}")")"
