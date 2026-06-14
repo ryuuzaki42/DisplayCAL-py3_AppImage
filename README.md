@@ -14,6 +14,10 @@ DisplayCAL-py3, this project intended to modernize the DisplayCAL code including
     DisplayCAL-py3: 3.9.17
 
 ---
+## Python in AppImage as base - https://github.com/niess/python-appimage
+https://github.com/ryuuzaki42/Python_to_make_AppImage/releases/download/06/python3.13.3-cp313-cp313-manylinux2014_x86_64.AppImage
+
+---
 ## wxPython precompiled used
 Default
 - https://extras.wxpython.org/wxPython4/extras/linux/gtk3/ubuntu-20.04/wxPython-4.2.2-cp313-cp313-linux_x86_64.whl
@@ -24,6 +28,13 @@ Fedora
 ---
 ## ArgyllCMS precompiled used
 https://www.argyllcms.com/Argyll_V3.5.0_linux_x86_64_bin.tgz
+
+---
+### Default x Fedora
+- Default: Test in Slackware 15.0 64 bits with KDE, using wxPython-4.2.2-cp313-cp313-linux_x86_64.whl
+- Fedora: Test in Fedora 43 64 bits with Gnome, using wxpython-4.2.5-cp313-cp313-linux_x86_64.whl
+- Bolth with libjpeg.so.8 from Ubuntu 22.04 and Argyll_V3.5.0_linux_x86_64_bin.tgz
+- Fedora also with libXss.so.1 from Ubuntu 22.04
 
 ---
 https://pypi.org/project/displaycal/
