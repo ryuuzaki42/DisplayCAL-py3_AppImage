@@ -47,11 +47,6 @@ jobs:
     - name: Install DisplayCAL and update pip
       run: |
         set -x
-
-        # Added libXss.so.1
-        find /usr/ | grep "libXss.so"
-        exit
-        
         cd squashfs-root/opt/python3*/bin/
         pwd; ls -lah
 
@@ -180,6 +175,11 @@ jobs:
         mkdir usr/libjpeg/
         cp /usr/lib/x86_64-linux-gnu/libjpeg.so* usr/libjpeg/
 
+        # Added libXss.so.1
+        find /usr/ | grep "libXss.so"
+        mkdir usr/libXss/
+        cp /usr/lib/x86_64-linux-gnu/libXss.so* usr/libXss/
+
         # Added ArgyllCMS
         wget -q https://www.argyllcms.com/Argyll_V3.5.0_linux_x86_64_bin.tgz
         tar -xvf Argyll_*_bin.tgz
@@ -190,6 +190,7 @@ jobs:
         HERE="$(dirname "$(readlink -f "${0}")")"
 
         export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HERE/usr/libjpeg/
+        export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HERE/usr/libXss/
         export PATH=$PATH:$HERE/ArgyllCMS/bin/
 
         cd "$HERE"/opt/python3*/bin/
