@@ -12,7 +12,7 @@ DisplayCAL-py3, this project intended to modernize the DisplayCAL code including
 - https://github.com/eoyilmaz/displaycal-py3
 
 ## Repository: https://github.com/ryuuzaki42/DisplayCAL-py3_AppImage
-    DisplayCAL-py3: 3.9.18
+    DisplayCAL-py3: 3.9.19
 
 ---
 ## Python in AppImage as base - https://github.com/niess/python-appimage
